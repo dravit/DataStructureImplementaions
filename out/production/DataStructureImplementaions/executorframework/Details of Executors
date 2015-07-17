@@ -1,0 +1,143 @@
+Executor framework is around the Executor Interface and its sub-interface ExecutorService and the class
+ThreadPoolExecutor that implements both interface.
+
+ With an executor, you only have to implement the Runnable objects and send them to the executor.
+ It is responsible for their execution, instantiation, and running with necessary threads
+
+ It improves performance using a pool of threads.
+ When you send a task to the executor, it tries to use a pooled thread for the execution of this task,
+ to avoid continuous spawning of threads
+
+ Another important advantage of the Executor framework is the Callable interface.
+ It's similar to the Runnable interface, but offers two improvements, which are as follows:
+
+ 1. The main method of this interface, named call(), may return a result.
+ 2. When you send a Callable object to an executor, you get an object that implements the Future interface.
+ You can use this object to control the status and the result of the Callable object
+
+ The first step to work with the Executor framework is to create an object of the ThreadPoolExecutor class.
+ You can use the four constructors provided by that class or use a factory class named Executors
+ that creates ThreadPoolExecutor.
+ Once you have an executor, you can send Runnable or Callable objects to be executed.
+
+ Thread pools address two different problems:
+ 1. they usually provide improved performance when executing large numbers of asynchronous tasks,
+ due to reduced per-task invocation overhead, and they provide a means of bounding and managing the resources,
+ including threads, consumed when executing a collection of tasks.
+ 2. Each ThreadPoolExecutor also maintains some basic statistics, such as the number of completed tasks.
+
+ -Core and maximum pool sizes
+ A ThreadPoolExecutor will automatically adjust the pool size according to the bounds set by corePoolSize
+ and maximumPoolSize. When a new task is submitted in method execute(Runnable), and fewer than corePoolSize
+ threads are running, a new thread is created to handle the request, even if other worker threads are idle.
+ If there are more than corePoolSize but less than maximumPoolSize threads running, a new thread will be
+ created only if the queue is full. By setting corePoolSize and maximumPoolSize the same,
+ you create a fixed-size thread pool. By setting maximumPoolSize to an essentially unbounded value such
+ as Integer.MAX_VALUE, you allow the pool to accommodate an arbitrary number of concurrent tasks.
+ Most typically, core and maximum pool sizes are set only upon construction, but they may also be
+ changed dynamically using setCorePoolSize and setMaximumPoolSize.
+
+ -On-demand construction
+ By default, even core threads are initially created and started only when new tasks arrive,
+ but this can be overridden dynamically using method prestartCoreThread or prestartAllCoreThreads.
+ You probably want to prestart threads if you construct the pool with a non-empty queue.
+
+ -Creating new threads
+ New threads are created using a ThreadFactory. If not otherwise specified, a Executors.defaultThreadFactory
+ is used, that creates threads to all be in the same ThreadGroup and with the same NORM_PRIORITY priority
+ and non-daemon status. By supplying a different ThreadFactory, you can alter the thread's name,
+ thread group, priority, daemon status, etc. If a ThreadFactory fails to create a thread when asked by
+ returning null from newThread, the executor will continue, but might not be able to execute any tasks.
+ Threads should possess the "modifyThread" RuntimePermission. If worker threads or other threads using
+ the pool do not possess this permission, service may be degraded: configuration changes may not take effect
+ in a timely manner, and a shutdown pool may remain in a state in which termination is possible but not completed.
+
+ -Keep-alive times
+ If the pool currently has more than corePoolSize threads, excess threads will be terminated
+ if they have been idle for more than the keepAliveTime. This provides a means of reducing resource
+ consumption when the pool is not being actively used. If the pool becomes more active later,
+ new threads will be constructed. This parameter can also be changed dynamically using method
+ setKeepAliveTime(long, * TimeUnit). Using a value of Long.MAX_VALUE TimeUnit.NANOSECONDS effectively
+ disables idle threads from ever terminating prior to shut down. By default, the keep-alive policy
+ applies only when there are more than corePoolSize threads. But method allowCoreThreadTimeOut(boolean)
+ can be used to apply this time-out policy to core threads as well, so long as the keepAliveTime
+ value is non-zero.
+
+ One of the advantages of the Executor framework is that you can run concurrent tasks that return a result.
+ The Java Concurrency API achieves this with the following two interfaces:
+ - Callable: This interface has the call() method. In this method, you have to implement the logic of a task.
+ The Callable interface is a parameterized interface, meaning you have to indicate the type of data the call()
+ method will return.
+ - Future: This interface has some methods to obtain the result generated by a Callable object and to manage its state.
+
+ Send a Callable object to be executed in an executor using the submit() method. This method receives a Callable object
+ as a parameter and returns a Future object that you can use with two main objectives:
+
+  - You can control the status of the task: you can cancel the task and check if it has finished. For this purpose,
+  you have used the isDone() method to check if the tasks had finished.
+  - You can get the result returned by the call() method. For this purpose, you have used the get() method.
+  This method waits until the Callable object has finished the execution of the call() method and has returned
+  its result. If the thread is interrupted while the get() method is waiting for the result, it throws an
+  InterruptedException exception. If the call() method throws an exception, this method throws an
+  ExecutionException exception.
+
+  When you call the get() method of a Future object and the task controlled by this object hasn't finished yet,
+  the method blocks until the task finishes. The Future interface provides another version of the get() method.
+  - get(long timeout, TimeUnit unit): This version of the get method, if the result of the task isn't available,
+  waits for it for the specified time. If the specified period of time passes and the result isn't yet available,
+  the method returns a null value. The TimeUnit class is an enumeration with the following constants: DAYS, HOURS,
+  MICROSECONDS, MILLISECONDS, MINUTES, NANOSECONDS, and SECONDS.
+
+  When you want to wait for the finalization of a task, you can use the following two methods:
+  - The isDone() method of the Future interface returns true if the task has finished its execution.
+  - The awaitTermination() method of the ThreadPoolExecutor class puts the thread to sleep until all the tasks have
+  finished their execution after a call to the shutdown() method.
+  These two methods have some drawbacks.
+  With the first one, you can only control the completion of a task, and with the second one, you have to
+  shutdown the executor to wait  for a thread, otherwise the method's call returns immediately.
+
+  The ThreadPoolExecutor class provides a method that allows you to send to the executor a list of tasks and
+  wait for the finalization of all the tasks in the list.
+
+  In case of ThreadPoolExecutor, we pass a task to the executor and it process it as soon as possible. When it ends
+  task is deleted from the executor and if we want to create it again we have to send it again to the executor.
+  But executor framework provides the possibility of executing periodic task through
+  java.util.concurrent.ScheduledThreadPoolExecutor
+
+  An important point to consider is that the period between two executions is the period of time between these two
+  executions that begins. If you have a periodic task that takes 5 seconds to execute and you put a period of 3 seconds,
+  you will have two instances of the task executing at a time.
+
+  Imp : ScheduledThreadPoolExecutor provides other methods to schedule periodic tasks. It is the scheduleWithFixedRate()
+  method. It has the same parameters as the scheduledAtFixedRate() method, but there is a difference worth noticing.
+  In the scheduledAtFixedRate() method, the third parameter determines the period of time between the starting of two
+  executions. In the scheduledWithFixedRate() method, parameter determines the period of time between the end of an
+  execution of the task and the beginning of the next execution.
+
+  Configure the behavior of an instance of the ScheduledThreadPoolExecutor class with the shutdown() method.
+  The default behavior is that the scheduled tasks finish when you call that method. You can change this behavior
+  using the setContinueExistingPeriodicTasksAfterShutdownPolicy() method of the ScheduledThreadPoolExecutor class with
+  a true value. The periodic tasks won't finish upon calling the shutdown() method
+
+  Use the cancel() method of the Future interface when you want to cancel a task that you have sent to an executor.
+  Depending on the parameter of the cancel() method and the status of the task, the behavior
+  of this method is different:
+  - If the task has finished or has been canceled earlier or it can't be canceled for other reasons,
+  the method will return the false value and the task won't be canceled.
+  - If the task is waiting in the executor to get a Thread object that will execute it, the task is canceled and
+  never begins its execution. If the task is already running, it depends on the parameter of the method.
+  The cancel() method receives a Boolean value as a parameter. If the value of that parameter is true and the task
+  is running, it will be canceled. If the value of the parameter is false and the task is running, it won't be canceled.
+
+  If you use the get() method of a Future object that controls a task that has been canceled,
+  the get() method will throw a CancellationException exception.
+
+  The FutureTask class provides a method called done() that allows you to execute some code after the finalization of
+  a task executed in an executor. It can be used to make some post-process operations, generating a report, sending
+  results by e-mail, or releasing some resources. This method is called internally by the FutureTask class when the
+  execution of the task that this FutureTask object is controlling finishes. The method is called after the result
+  of the task is set and its status is changed to the isDone status, regardless of whether the task has been
+  canceled or finished normally.
+  By default, this method is empty. You can override the FutureTask class and implement this method to change this
+  behavior. In this recipe, you will learn how to override this method to execute code after the finalization of
+  the tasks.
