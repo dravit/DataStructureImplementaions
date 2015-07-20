@@ -10,7 +10,7 @@ import java.util.concurrent.*;
  */
 public class Main {
     public static void main(String[] args) {
-        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors. newFixedThreadPool(2);
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
         List<Future<Integer>> resultList = new ArrayList<>();
         Random random = new Random();
         for (int i=0; i<10; i++) {
