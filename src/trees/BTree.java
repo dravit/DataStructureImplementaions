@@ -11,7 +11,7 @@ import java.util.Stack;
 /**
  * 
  * @author Vivek Maurya
- *
+ *<pre>
  * Sample tree for this class
  * 
  * 
@@ -21,14 +21,64 @@ import java.util.Stack;
  *   3     18         --------- Level 1
  *  / \    / \
  * 2   4  9  19       --------- Level 2
- * 
+ *</pre> 
  */
 public class BTree {
 
 	private BNode root;
+	private static int nodeCounter;
 	
 	public BTree() {
 		root = null;
+		nodeCounter = 0;
+	}
+	
+	public void findLeftLeaves() {
+		if(root == null)
+			System.out.println("Tree is empty !");
+		
+		List<BNode> nodeList = new ArrayList<BNode>();
+		root.findLeftLeaves(nodeList);
+		
+		if(nodeList.isEmpty())
+			System.out.println("No left leaves !");
+		else {
+			System.out.println("Left leaves- ");
+			for(BNode node : nodeList) {
+				System.out.print(node.value+", ");
+			}
+		}
+	}
+	
+	public boolean isFullBinaryTree() {
+		if(root == null)
+			return true;
+		
+		return root.isFullBinaryTree();
+	}
+	
+	public void findKthLargestNode(int k) {
+		if(root == null)
+			System.out.println("Tree is empty !");
+		
+		if(k == -1)
+			System.out.println("Index should be positive number.");
+		
+		root.findKthLargestNode(k);
+	}
+	
+	public void removeHalfNodes() {
+		if(root == null)
+			System.out.println("Tree is empty, nothing to remove !");
+		
+		root.removeHalfNodes(root);
+	}
+	
+	public int findLowestCommonAncestor(int node1, int node2) {
+		if(root == null)
+			return -1;
+		
+		return root.findLowestCommonAncestor(node1, node2);
 	}
 	
 	
@@ -347,6 +397,115 @@ public class BTree {
 		}
 		
 		/**
+		 * Method finds all left leaf nodes of a Tree.<br/>
+		 * Leaf node which is left child of a node. 
+		 */
+		private void findLeftLeaves(List<BNode> nodeList) {
+			if(isLeaf(this.left))
+				nodeList.add(this.left);
+			else if(this.left != null)
+				this.left.findLeftLeaves(nodeList);
+			
+			if(this.right != null)
+				this.right.findLeftLeaves(nodeList);
+		}
+		
+		private boolean isLeaf(BNode node) {
+			if(node == null)
+				return false;
+			
+			if(node.left == null && node.right == null)
+				return true;
+			
+			return false;
+		}
+
+		/**
+		 * In full binary tree, every node has 0 or 2 children.<br/>
+		 * If node's left and right sub-trees are null, this sub-tree is full tree.<br/>
+		 * If both children are not null, check recursively for both children.
+		 */
+		private boolean isFullBinaryTree() {
+			if(this.left == null && this.right == null)
+				return true;
+			
+			if(this.left != null && this.right != null)
+				return this.left.isFullBinaryTree() && this.right.isFullBinaryTree();
+			
+			return false;
+		}
+
+		/**
+		 * Traverse the tree in reverse inorder, in this way the values<br/>
+		 * would be in decreasing order.<br/>
+		 * Count visited nodes and compare node counter with passed K.<br/>
+		 * If node counter is equal to K, it means current node is Kth largest<br/> 
+		 * in the Tree.
+		 */
+		private void findKthLargestNode(int k) {
+			if(nodeCounter >= k)
+				return ;
+			
+			if(this.right != null)
+				this.right.findKthLargestNode(k);
+			
+			nodeCounter++;
+			
+			if(nodeCounter == k)
+				System.out.println(k+"th largest value in this tree is- "+this.value);
+			
+			if(this.left != null)
+				this.left.findKthLargestNode(k);
+			
+		}
+
+		/**
+		 * Method to remove Half nodes in a tree.<br/>
+		 * If one of its left and right child is null for a node, remove<br/>
+		 * this node and assign its non-null child to its parent node. 
+		 */
+		private void removeHalfNodes(BNode parent) {
+			if((this.left == null && this.right != null) || (this.left != null && this.right == null)) {
+				if(parent.left == this) {
+					parent.left = this.left != null ? this.left : this.right;
+					parent.left.removeHalfNodes(parent);
+				}
+				
+				if(parent.right == this) {
+					parent.right = this.left != null ? this.left : this.right;
+					parent.right.removeHalfNodes(parent);
+				}
+			} else {
+				if(this.left != null)
+					this.left.removeHalfNodes(this);
+				
+				if(this.right != null)
+					this.right.removeHalfNodes(this);
+			}
+			
+		}
+
+		/**
+		 * Lowest common ancestor(LCA) of two nodes is the lowest node which has<br/>
+		 * two nodes as its descendants.<br/>
+		 * If current node's value lies between node1 and node2, this node is LCA.<br/>
+		 * If node's value is greater than both node1 and node2, it means we are in the right sub-tree,<br/>
+		 * in this case search LCA in left sub-tree. <br/>
+		 * If node's value is less than both node1 and node2, it means we are in the left sub-tree,<br/>
+		 * in this case search LCA in right sub-tree. 
+		 */
+		private int findLowestCommonAncestor(int node1, int node2) {
+			if(this.value > node1 && this.value < node2)
+				return this.value;
+			else if(this.value > node1 && this.value > node2)
+				return this.left.findLowestCommonAncestor(node1, node2);
+			else if(this.value < node1 && this.value < node2)
+				return this.right.findLowestCommonAncestor(node1, node2);
+
+			return -1;
+		}
+
+		/**
 		 * Method prints all ancestors of a node.<br/>
 		 * Idea is to search the value in the tree.<br/>
 		 * Visit a node and if it is not the target node, put this node in a queue.<br/>
@@ -584,16 +743,6 @@ public class BTree {
 			return rightHeight + 1;
 		}
 
-        /**
-         * Method to check whether given tree is BST or not
-         */
-/*
-        private boolean isBST() {
-            if(this.left == null) {
-                ret
-            }
-            return true;
-        }*/
 		/**
 		 * Returns all leaf nodes.<br/>
 		 * A node is leaf node if its left and right both children are null.<br/>

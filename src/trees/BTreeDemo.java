@@ -77,6 +77,28 @@ public class BTreeDemo {
 		System.out.println("\n\nPrint all ancestors- ");
 		System.out.print("Ancestors of 9- ");
 		tree.printAncestors(9);
+		
+		System.out.println("\n\nFindin lowest common ancestor-");
+		System.out.println("LCA of 9 and 19- "+tree.findLowestCommonAncestor(9, 19));
+		System.out.println("LCA of 2 and 19- "+tree.findLowestCommonAncestor(2, 19));
+		
+		System.out.println("\n\nRemove Half node starts-----");
+		BTree t = new BTree();
+		input = new int[]{7,8,10,9,2,5,4,6};
+		for(int value : input) {
+			t.add(value);
+		}
+		t.inorderTraversal();
+		System.out.println("\nIs this a full binary tree- "+t.isFullBinaryTree());
+		t.removeHalfNodes();
+		System.out.println("\nAfter removing half nodes-");
+		t.inorderTraversal();
+		System.out.println("\nRemove Half node ends-----");
+		
+		tree.findKthLargestNode(2);
+		
+		System.out.println("\nIs this a full binary tree- "+tree.isFullBinaryTree());
+		tree.findLeftLeaves();
 	}
 
 }
