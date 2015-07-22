@@ -3,9 +3,9 @@ package linkedList;
 public class LinkedListDemo {
 
 	public static void main(String[] args) {
-		//singlyLinkedList();
+		singlyLinkedList();
 		
-		doublyLinkedList();
+		//doublyLinkedList();
 	}
 
 	private static void singlyLinkedList() {

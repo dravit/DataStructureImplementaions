@@ -36,7 +36,7 @@ public class Main {
              *  The result of the invokeAny() method is the name of the first task.
              *  <i>3.</i> The first task throws Exception and the second one returns the true value.
              *  The result of the invokeAny() method is the name of the second task.
-             *  <i>4.</i>Both tasks throw Exception. In that class, the invokeAny() method throws  an
+             *  <i>4.</i>Both tasks throw Exception. In that case, the invokeAny() method throws  an
              *  ExecutionException exception
              */
             result = executor.invokeAny(taskList);

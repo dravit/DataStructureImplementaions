@@ -30,6 +30,11 @@ public class Solutions {
      * <b>Design an algorithm and write code to remove the duplicate characters in a string without using any
      * additional buffer  NOTE: One or two additional variables are fine
      * An extra copy of the array is not </b>
+     *
+     * Solution :
+     * In this we are taking a new boolean array and then putting true at position of first element of str(original array) and then
+     * iterating over rest of the str and if boolean array has true for position of that element than skip that element, otherwise,
+     * put that element in str using another pointer tail.
      */
     public char[] removeDuplicates(char str[]) {
         if(str == null) return str;
@@ -81,6 +86,12 @@ public class Solutions {
     /**
      * <b>Write code to remove duplicates from an unsorted linked list.</b>
      * <i>This implementation is by using buffer</i>
+     *
+     * Solution :
+     * Implemented using a hash table, put elements of list in a hash table if it does not contained in hash table
+     * otherwise remove that element from the iterator.
+     *
+     * If you try to remove the element from list while it is being iterated than it will @throw ConcurrentModificationException
      */
     public void removeDuplicatesFromListUsingBuffer(LinkedList<String> inputList) {
         Hashtable<String, String> buffer = new Hashtable<String, String>();
