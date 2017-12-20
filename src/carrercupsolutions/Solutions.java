@@ -75,7 +75,7 @@ public class Solutions {
             return false;
         } else if(inputString.length() > 0) {
             String concatenatedRotatedString = rotatedString + rotatedString;
-            if(concatenatedRotatedString.indexOf(inputString) != -1) {
+            if(concatenatedRotatedString.contains(inputString)) {
                 return true;
             } else {
                 return false;

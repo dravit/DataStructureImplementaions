@@ -1,0 +1,21 @@
+BlockingQueue is like another Queue implementations with additional capabilities. 
+Any attempt, to retrieve something out of it, can be seen safe as it will not return empty handed. 
+Consumer thread will automatically wait until BlockingQueue is not populated with some data. 
+Once it fills, thread will consume the resource.
+
+BlockingQueue works on following rules:
+
+If fewer than corePoolSize threads are running, the Executor always prefers adding a new thread rather than queuing.
+If corePoolSize or more threads are running, the Executor always prefers queuing a request rather than adding a new thread.
+If a request cannot be queued, a new thread is created unless this would exceed maximumPoolSize, in which case, the task will be rejected.
+
+Explaining RejectedExecutionHandler : 
+
+So the danger is, a task can be rejected as well. We need to have something in place to resolve this situation 
+because no one would like to miss any single job in his application.
+
+Can we do something about it? Yes, we can…[Borrowed from Obama]
+
+BlockingQueue in case of rejection throws RejectedExectionException, we can add a handler for it.
+
+Adding RejectedExecutionHandler is considered a good practice when using new concurrent APIs.
