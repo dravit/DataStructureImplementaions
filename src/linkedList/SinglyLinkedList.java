@@ -2,7 +2,7 @@ package linkedList;
 
 /**
  * Singly Linked List implementation 
- * @author Vivek Maurya
+ * @author Dravit Gupta
  */
 public class SinglyLinkedList {
 

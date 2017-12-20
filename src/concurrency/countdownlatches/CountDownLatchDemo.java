@@ -8,14 +8,17 @@ import java.util.concurrent.CountDownLatch;
 public class CountDownLatchDemo {
     public static void main(String args[]) {
         final CountDownLatch latch = new CountDownLatch(3);
-        for(int i=0; i<10; i++) {
+        //this is the number of times countdown will be called on this countdown latch object.
+        //A thread can call countdown multiple times which makes it different from CyclicBarriers.
+        //for(int i=0; i<10; i++) {
             Thread cacheService = new Thread(new Service("CacheService", 1000, latch));
             Thread alertService = new Thread(new Service("AlertService", 1000, latch));
             Thread validationService = new Thread(new Service("ValidationService", 1000, latch));
             cacheService.start(); //separate thread will initialize CacheService
+            //latch.countDown(); This is the case which breaks countdown latch even all the services are not started
             alertService.start(); //another thread for AlertService initialization
             validationService.start();
-        }
+        //}
         // application should not start processing any thread until all service is up
         // and ready to do there job.
         // Countdown latch is idle choice here, main thread will start with count 3
