@@ -12,6 +12,16 @@ package concurrency.questions;
  * If there was no such number, stop. Otherwise, let p now equal this number (which is the next prime),
  * and repeat from step 3.
  */
+
+/**
+ * Steps:
+ * 1.   create an array of boolean of length n+1 and mark all of them as true.
+ * 2.   Consider first p as 2 and run a loop having conditon as p*p <= n and increment as p++
+ * 3.   in this loop check if the boolean array has true on this index.
+ * 4.   If it is true thn run another loop that starts counter from i=2*p, condition i<=n and increment it by i+=p
+ * 5.   Mark all such values are false.
+ * 6.   Print left out true from boolean array.
+ */
 public class FindPrimeNumbers {
 
     /**
@@ -25,7 +35,7 @@ public class FindPrimeNumbers {
         }
         for(int p=2; p*p <=n; p++) {
             if(prime[p]) {
-                for(int i=p*2; i<=n; i+= p) {
+                for(int i=2*p; i<=n; i+= p) {
                     prime[i] = false;
                 }
             }

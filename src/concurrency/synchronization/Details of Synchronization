@@ -99,7 +99,7 @@
   of code that begins with a call to a lock() method of a Lock object and ends with an unlock() method of
   the same Lock object. When a thread calls the await() method of a condition, it automatically frees the
   control of the lock, so that another thread can get it and begin the execution of the same, or another
-  critical section protected by that lock.
+  critical section protected by that lock. - This is same as wait()
 
   When a thread calls the signal() or signallAll() methods of a condition, one or all of the threads
   that were waiting for that condition are woken up, but this doesn't guarantee that the condition that

@@ -42,4 +42,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.class
-.idea
+.idea/*
+
+# Ignore out folder
+out/
+.idea/workspace.xml
