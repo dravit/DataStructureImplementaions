@@ -2,6 +2,11 @@ package designPattern.proxy;
 
 import java.util.logging.Logger;
 
+/**
+ * This class is a proxy for all the calls that goes to @{@link IvoryTower}
+ * This implements the common interface @{@link WizardTower} so that function of main and
+ * proxy object should remain same.
+ */
 public class WizardTowerProxy implements WizardTower {
 	
 	public static final Logger LOGGER = Logger.getLogger(WizardTowerProxy.class.getName());

@@ -1,5 +1,8 @@
 package designPattern.proxy;
 
+/**
+ * This is the object which want to use @{@link IvoryTower}
+ */
 public class Wizard {
 
 	public final String name;

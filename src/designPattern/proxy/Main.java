@@ -9,7 +9,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		/*
+		Implementing proxy pattern
+		 */
 		WizardTowerProxy wizardTowerProxy = new WizardTowerProxy(new IvoryTower());
 		wizardTowerProxy.enter(new Wizard("Red Wizard"));
 		wizardTowerProxy.enter(new Wizard("Black Wizard"));
