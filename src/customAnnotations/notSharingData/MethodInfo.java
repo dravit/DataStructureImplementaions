@@ -1,4 +1,4 @@
-package customAnnotations;
+package customAnnotations.notSharingData;
 
 import java.lang.annotation.*;
 

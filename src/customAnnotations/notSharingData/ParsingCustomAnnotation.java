@@ -1,4 +1,4 @@
-package customAnnotations;
+package customAnnotations.notSharingData;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -8,7 +8,7 @@ public class ParsingCustomAnnotation {
     public static void main(String[] args) {
         try {
             for(Method method : ParsingCustomAnnotation.class.getClassLoader()
-                    .loadClass("customAnnotations.AnnotationUsages").getMethods()) {
+                    .loadClass("customAnnotations.notSharingData.AnnotationUsages").getMethods()) {
                 if(method.isAnnotationPresent(MethodInfo.class)) {
                     for(Annotation annotation : method.getDeclaredAnnotations()) {
                         System.out.println("Annotation In method : " + method + " : " + annotation);
