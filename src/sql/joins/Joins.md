@@ -46,12 +46,10 @@ At the top level there are mainly 3 types of joins:
  
  
  
-> DDL & DML for table data :
+> DDL & DML for table data use [SQL Fiddle](http://sqlfiddle.com):
 >
-> drop table customers;
->  
 >  create table customers(
-   customer_id int auto_increment,
+   customer_id int,
    first_name varchar (255),
    last_name  varchar (255),
    email varchar (255),
@@ -60,11 +58,9 @@ At the top level there are mainly 3 types of joins:
    state varchar (255),
    zipcode varchar (255)
   );
->  
->  drop table orders;
->  
+>    
 >  create table orders(
-   order_id int auto_increment,
+   order_id int,
    order_date varchar (255),
    order_amount varchar (255),
    customer_id int
