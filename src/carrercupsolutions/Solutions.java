@@ -1,13 +1,12 @@
 package carrercupsolutions;
 
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Created by Dravit on 6/13/2015.
  */
 public class Solutions {
+
     /**
      * <b>Implement an algorithm to determine if a string has all unique characters</br>
      * What if you can not use additional data structures?</b></br>
@@ -105,5 +104,14 @@ public class Solutions {
                 buffer.put(listElement, "");
             }
         }
+    }
+
+
+
+
+    public static void swap(String[] input, int index1, int index2) {
+        String temp = input[index1];
+        input[index1] = input[index2];
+        input[index2] = temp;
     }
 }
