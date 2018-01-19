@@ -1,4 +1,4 @@
-package concurrency.questions;
+package codingQuestions;
 
 /**
  * This class is used to print odd Even numbers using two different threads

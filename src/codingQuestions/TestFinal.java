@@ -1,4 +1,4 @@
-package carrercupsolutions;
+package codingQuestions;
 
 class PersonalLoan {
     public final String getName() {
@@ -19,6 +19,8 @@ public class TestFinal {
         System.out.println(personalLoan.getName());
 
         CheapPersonalLoan cheapPersonalLoan = new CheapPersonalLoan();
-        System.out.println(cheapPersonalLoan.getName());//Final Methods cannot be overridden but they are visible from child class
+        //This can be called using child object as Final Methods cannot be overridden
+        // but they are visible from child class
+        System.out.println(cheapPersonalLoan.getName());
     }
 }

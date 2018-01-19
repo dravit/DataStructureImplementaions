@@ -1,4 +1,4 @@
-package concurrency.questions;
+package codingQuestions;
 
 //Find all the prime numbers less than or equal to a given number n
 //Using Sieve of Eratosthenes

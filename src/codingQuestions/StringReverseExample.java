@@ -1,4 +1,4 @@
-package carrercupsolutions;
+package codingQuestions;
 
 import org.jetbrains.annotations.NotNull;
 

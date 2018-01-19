@@ -1,4 +1,4 @@
-package concurrency.questions;
+package codingQuestions;
 
 public class QueueImplementation {
 
