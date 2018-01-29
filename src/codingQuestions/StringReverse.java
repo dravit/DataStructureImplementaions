@@ -1,46 +1,16 @@
 package codingQuestions;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class StringReverseExample {
+public class StringReverse {
 
     private static List<String> vowelList = Arrays.asList("a","A","e","E","i","I","o","O","u","U");
 
-    public static void main(String args[]) throws FileNotFoundException, IOException {
-
-        //original string
-        String str = "Sony is going to introduce Internet TV soon";
-        System.out.println("Original String: " + str);
-
-        //reversed string using Stringbuffer
-        String reverseStr = new StringBuffer(str).reverse().toString();
-        System.out.println("Reverse String in Java using StringBuffer: " + reverseStr);
-
-        //iterative method to reverse String in Java
-        reverseStr = reverse(str);
-        System.out.println("Reverse String in Java using Iteration: " + reverseStr);
-
-        //recursive method to reverse String in Java
-        reverseStr = reverseRecursively(str);
-        System.out.println("Reverse String in Java using Recursion: " + reverseStr);
-
-        //reverse only vowels in a String
-        reverseStr = reverseVowels("Hello af WOrld");
-        System.out.println("Vowels reversed String : " + reverseStr);
-
-        //reverse words in a String
-        reverseStr = reverseWordsInString("getting good at coding needs a lot of practice");
-        System.out.println("Words reversed in String : " + reverseStr);
-
-    }
-
-    public static String reverse(String str) {
+    public String reverse(String str) {
         StringBuilder strBuilder = new StringBuilder();
         char[] strChars = str.toCharArray();
 
@@ -51,7 +21,7 @@ public class StringReverseExample {
         return strBuilder.toString();
     }
 
-    public static String reverseRecursively(String str) {
+    public String reverseRecursively(String str) {
 
         //base case to handle one char string and empty string
         if (str.length() < 2) {
@@ -72,7 +42,7 @@ public class StringReverseExample {
      * @param input Input string for which vowels has to be reversed
      * @return String with reversed vowels
      */
-    public static String reverseVowels(String input) {
+    public String reverseVowels(String input) {
         String [] str = input.split("");
         int i = 0;
         int j = str.length - 1;
@@ -105,8 +75,7 @@ public class StringReverseExample {
      * @param input Input string for which words has to be reversed
      * @return String with reversed words
      */
-    @NotNull
-    public static String reverseWordsInString(String input) {
+    public String reverseWordsInString(String input) {
         String [] str = input.split(" ");
         int i = 0;
         int j = str.length - 1;
@@ -122,6 +91,6 @@ public class StringReverseExample {
         for(String s : str) {
             returnString.append(s + " ");
         }
-        return returnString.toString();
+        return returnString.toString().trim();
     }
 }
