@@ -17,31 +17,58 @@ public class LinkedListDemo {
 			list.addFirst(i);
 		}
 		System.out.println("List after adding elements at first position- "+list);
-		
+
 		System.out.println("\nAdding elements at last position-");
 		list = new SinglyLinkedList();
 		for(int i : input) {
 			list.addLast(i);
 		}
 		System.out.println("List after adding elements at last position-  "+list);
-		
-		System.out.println("\nCount nodes- "+list.countNodes());
-		
-		System.out.println("\nAdding at position 3- ");
+
+
+		list.swapNodes(2, 4);
+
+		System.out.println("List after swaping- "+list);
+
+		list.swapNodes(5, 1);
+
+		System.out.println("List after swaping- "+list);
+
+		list.swapNodes(1, 3);
+
+		System.out.println("List after swaping- "+list);
+
+		list.swapNodes(5, 6);
+
+		System.out.println("List after swapping- "+list);
+
+		System.out.println("Count nodes : "+list.countNodes());
+		System.out.println("Middle element of list : " + list.getMiddleNode());
+
+		System.out.println("Adding at position 3 : ");
 		list.addAtPosition(6, 3);
 		System.out.println(list);
-		
-		System.out.println("\nDeleting first node-");
+		System.out.println("Middle element of list : " + list.getMiddleNode());
+
+		System.out.println("Deleting first node : ");
 		list.deleteFirst();
 		System.out.println(list);
+		System.out.println("Middle element of list : " + list.getMiddleNode());
 		
-		System.out.println("\nDeleting last node-");
+		System.out.println("Deleting last node : ");
 		list.deleteLast();
 		System.out.println(list);
-		
-		System.out.println("\nDeleting at position 3-");
+		System.out.println("Middle element of list : " + list.getMiddleNode());
+
+		System.out.println("Deleting at position 3 : ");
 		list.deleteAtPosition(3);
 		System.out.println(list);
+		System.out.println("Middle element of list : " + list.getMiddleNode());
+
+		System.out.println("Deleting first node : ");
+		list.deleteFirst();
+		System.out.println(list);
+		System.out.println("Middle element of list : " + list.getMiddleNode());
 	}
 	
 	private static void doublyLinkedList() {

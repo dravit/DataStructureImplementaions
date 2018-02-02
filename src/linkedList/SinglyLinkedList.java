@@ -149,7 +149,90 @@ public class SinglyLinkedList {
 		
 		return count;
 	}
-	
+
+	/**
+	 * Swap nodes without swaping values of those nodes.
+	 * @param data1
+	 * @param data2
+	 */
+	public void swapNodes(int data1, int data2) {
+		if(head == null || size == 1) {
+			System.out.println("List is empty or only one node present!!");
+			return;
+		}
+		Node node1 = null;
+		Node node1Prev = null;
+		Node node2 = null;
+		Node node2Prev = null;
+		Node start = head;
+		if(start.data == data1) {
+			node1Prev = null;
+			node1 = start;
+		}
+		if(start.data == data2) {
+			node2Prev = null;
+			node2 = start;
+		}
+		while(start.next != null) {
+			if(start.next.data == data1) {
+				node1Prev = start;
+				node1 = start.next;
+			}
+			if(start.next.data == data2) {
+				node2Prev = start;
+				node2 = start.next;
+			}
+			start = start.next;
+		}
+
+		if(node1 != null && node2 != null) {
+			if(node1Prev == null) {
+				head = node2;
+			}
+			if(node2Prev == null) {
+				head = node1;
+			}
+			Node tempNext = node2.next;
+			if(node1Prev != null)
+				node1Prev.next = node2;
+			node2.next = node1.next;
+
+			if(node2Prev != null)
+				node2Prev.next = node1;
+			node1.next = tempNext;
+		}
+	}
+
+	public int getMiddleNode() {
+		if(head == null) {
+			System.out.println("List is empty!!");
+			return 0;
+		}
+		if(size == 1) {
+			return head.data;
+		}
+
+		int middle = Math.floorDiv(size, 2) + 1;
+		int count = 1;
+		Node start = head;
+		while(count++ < middle) {
+			start = start.next;
+		}
+		return start.data;
+	}
+
+	public void reverseList() {
+		Node prev = null;
+		Node current = head;
+		Node next = null;
+		while(current.next != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+	}
+
 	public boolean isEmpty() {
 		return (size == 0);
 	}
