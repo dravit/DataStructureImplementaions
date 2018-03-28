@@ -19,7 +19,8 @@
 
 #### Association
 - There are two types of associations :
-  - Composition is a HAS-A relationship
+  - Composition is a OWNS-A relationship (Acheived by using reference object created in constructor. When main object dies Associated object also dies)
+  - Aggregation is a HAS-A relationship (Acheived by using reference object passed through setter. When main object dies Associated object doen't dies)
 
 #### Polymorphism
 - Use same word to mean differnt things
