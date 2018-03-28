@@ -1,21 +1,34 @@
 # OOPs Principles / Design Principles
 
 #### Encapsulation
-
 - Encapsulation means that the internal representation of an object is generally hidden from outside of object's definition.
-- Typically the object's own methods can directly inspect or manipulate its fields
+- Typically the object's own methods can directly inspect or manipulate its fields.
+- Fields must be marked as private and provide access to them using public methods.
+- It's aprotective barrier taht keeps data and code safe with in the class.
+
+#### Inheritance
+- Create new classes that share some of the attributes of existing classes.
+
+#### Polymorphism
+- Use same word to mean differnt things
+- Method Overloading is compile time polymorphism
+- Method Overriding is run time polymorphism
 
 #### DRY (Don't Repeat Yourself) 
 - avoid duplication in code.
+- Never have two duplicate blocks of identical code at two different places.
 
 #### Encapsulate what changes 
 - hides the implementation details, helps in maintenance
+- Make variables and methods as private by default
+- Increase access step by step i.e private to protected and not public.
 
 #### Open Closed Design Principle 
 - Open for Extension but closed for Modification
+- New functionality should be added by introducing new classes (using Decorator Pattern at runtime), methods or fields (using inheritance), instead of modifying already tried and tested code.
 
 #### SRP (Single Responsibility Principle) 
-- One class should do only one and do it well
+- One class should do only one and do it well.
 - There should not be more than one reason for a class to change.
 
 #### DIP (Dependency Inversion Principle) 
