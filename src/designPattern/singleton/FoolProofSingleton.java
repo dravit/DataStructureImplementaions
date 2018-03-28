@@ -1,4 +1,4 @@
-package singleton;
+package designPattern.singleton;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * And a public function which can access the private static variable of the inner class containing object.
  * This method of getting Singleton is also thread safe and there is no need to synchronization in this.
  *
- * To make singleton class serialization safe we need to implement readResolve() method in this class which returns our
+ * To make designPattern.singleton class serialization safe we need to implement readResolve() method in this class which returns our
  * getInstance method.
  */
 public class FoolProofSingleton implements Serializable, Cloneable {
@@ -43,7 +43,7 @@ public class FoolProofSingleton implements Serializable, Cloneable {
     }
 
     /**
-     * To prevent breaking of singleton pattern throw clone not supported exception.
+     * To prevent breaking of designPattern.singleton pattern throw clone not supported exception.
      * @return
      * @throws CloneNotSupportedException
      */

@@ -1,4 +1,4 @@
-package singleton;
+package designPattern.singleton;
 
 /**
  * This class shows how we can break Singleton using Cloning

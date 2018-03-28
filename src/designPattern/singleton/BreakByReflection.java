@@ -1,9 +1,9 @@
-package singleton;
+package designPattern.singleton;
 
 import java.lang.reflect.Constructor;
 
 /**
- * This class shows how we can break singleton pattern using reflection
+ * This class shows how we can break designPattern.singleton pattern using reflection
  * To run this properly remove exception throwing code from Constructor of {@link FoolProofSingleton}
  */
 public class BreakByReflection {
