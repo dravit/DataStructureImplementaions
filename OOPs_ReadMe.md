@@ -1,5 +1,11 @@
 # OOPs Principles / Design Principles
 
+#### Abstraction
+- Abstraction occurs during class level design, **with oubjective of hiding the implementation complexity**
+- Simply it means **'interface'** to access underlying implementation.
+- E.g A java dev can use high level features of FileInputStream without concerns of how it works internally.
+- This allows the implementation of FileInputStream to be changed, as long as API(interface) to FileInputStream remains consistent.
+
 #### Encapsulation
 - Encapsulation means that the internal representation of an object is generally hidden from outside of object's definition.
 - Typically the object's own methods can directly inspect or manipulate its fields.
