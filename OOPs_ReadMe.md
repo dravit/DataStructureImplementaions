@@ -71,3 +71,9 @@
 #### Method Hiding
 - Since static methods are cannot be overridden, but if you declare same static method in subclass that would hide the method from superclass.
 - If you call method from Superclass reference superclass method will be called.
+
+#### Private in Java
+- private methods are well encapsulated in class and can be chaged any time without fear of side-effects
+- 
+
+
