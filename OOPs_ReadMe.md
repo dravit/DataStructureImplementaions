@@ -17,8 +17,9 @@
 - Builds IS-A relationship
 - class having private constructor or class marked as final can not be inherited.
 
-#### Composition
-- Composition is a HAS-A relationship
+#### Association
+- There are two types of associations :
+  - Composition is a HAS-A relationship
 
 #### Polymorphism
 - Use same word to mean differnt things
