@@ -15,6 +15,7 @@
 #### Inheritance
 - Create new classes that share some of the attributes of existing classes.
 - Builds IS-A relationship
+- class having private constructor or class marked as final can not be inherited.
 
 #### Composition
 - Composition is a HAS-A relationship
@@ -86,4 +87,19 @@
 - It doesn't make sense to make private methods as final, as private methods can't be overriden in java
 - Top level classes cannot be marked as private.
 
+#### Overriding
+- Method Overriding can only happen in sub-class not in same class.
+- Overriding methods cannot throw checked exceptions which are higher in hierarchy, than checked exception thrown by overriden method.
+- E.g If a mthod throws IOException or ClassNotfoundException (Checked exceptions), overriding method cannot throw Exception (It is super-class)
+- RunTimeException is not restricted, you can either increase, decrease or remove it in Overriding method.
+- Overriding method cannot reduce access of Overriden method
+- private, static and final methods cannot be overriden
+- Return type of Overriding method must be same as Overriden method.
+- Return type of Overriding method can be Sub-class of Overriden method. This is called as Co-variant return.
+- Cannot override non-static method as static in child class.
+
+#### Overloading
+- Methods with same name but different method signatures, signatures must be different
+- Oveloaded method calls are resolved during compile time
+- Method overloading can occur in same class also.
 
