@@ -14,6 +14,10 @@
 
 #### Inheritance
 - Create new classes that share some of the attributes of existing classes.
+- Builds IS-A relationship
+
+#### Composition
+- Composition is a HAS-A relationship
 
 #### Polymorphism
 - Use same word to mean differnt things
@@ -68,12 +72,18 @@
 - In order to compare two objects for equality, we ask class itself to do comparison instead of Client class doing that.
 - Key benefir of this design principle is no duplication of code and pretty easy to modify behaviour.
 
-#### Method Hiding
+#### Method Hiding And Static Methods
+- Static methods cannot be overriden as they are resolved at compile time. In order for a method for overriding to work, a method should be virtual and resolved at run time because objects are available only at run time.
 - Since static methods are cannot be overridden, but if you declare same static method in subclass that would hide the method from superclass.
 - If you call method from Superclass reference superclass method will be called.
+- Static Methods can be overloaded, as overloading has nothing to do with run time
 
 #### Private in Java
 - private methods are well encapsulated in class and can be chaged any time without fear of side-effects
-- 
+- private methods use static binding in Java and they are bonded during compile time which is fast compared to dynamic binding which occurs during run time and also gives chance to JVM to either inline the method or optimize it.
+- Private methods cannot be overriden
+- Private methods are accessible in inner clases.
+- It doesn't make sense to make private methods as final, as private methods can't be overriden in java
+- Top level classes cannot be marked as private.
 
 
