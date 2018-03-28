@@ -1,4 +1,4 @@
-# OOPs Principles
+# OOPs Principles / Design Principles
 
 #### Encapsulation
 
