@@ -1,4 +1,4 @@
-package codingQuestions.producre_consumer;
+package codingQuestions.producer_consumer.blockingQueueImpl;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -18,7 +18,7 @@ public class Consumer implements Runnable {
         Message message;
 
         try {
-            while ((message = queue.take()).getMessageName() != "Exit") {
+            while ("Exit".equals((message = queue.take()).getMessageName())) {
                 System.out.println("Printing message " + message.getMessageName());
             }
         } catch (InterruptedException e) {

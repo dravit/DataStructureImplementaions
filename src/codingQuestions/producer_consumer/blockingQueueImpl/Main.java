@@ -1,4 +1,4 @@
-package codingQuestions.producre_consumer;
+package codingQuestions.producer_consumer.blockingQueueImpl;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
