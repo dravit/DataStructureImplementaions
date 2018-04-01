@@ -64,7 +64,7 @@ public class BinarySearch {
     }
 
     /**
-     * This function finds occurrence count of element in an Array with worst case complexity as O(logn)
+     * This function finds occurrence count of element in a sorted Array with worst case complexity as O(logn)
      * @param inputArr
      * @param elementToSearch
      * @return
@@ -164,6 +164,7 @@ public class BinarySearch {
      * Kadane's Algorithm
      * This method is used to find maximum sum sub array from the given array.
      * This method gives solution in O(n).
+     * Atleast  One element must be positive
      */
     public int maxSubArraySumUsingKadane(int [] inputArr, int length) {
         int ans = 0, sum = 0;
