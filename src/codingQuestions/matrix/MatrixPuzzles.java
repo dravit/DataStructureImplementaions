@@ -174,6 +174,72 @@ public class MatrixPuzzles {
         }
     }
 
+    /**
+     * Rotate a <b>square</b> matrix by 90 degree without using any extra space
+     * Steps :
+     * 1. Find transpose of matrix.
+     * 2. Reverse rows of the transpose.
+     *
+     * @param matrix
+     */
+    public void rotateMatrix90(int[][] matrix, int matrixRows, int matrixColumns) {
+        transpose(matrix, matrixRows, matrixColumns);
+        reverseColumns(matrix, matrixRows, matrixColumns);
+
+    }
+
+    /**
+     * For input
+     * 1,   2,  3,  4
+     * 6,   7,  8,  9
+     * 11, 12, 13, 14
+     * 14, 17, 18, 19
+     * output will be :
+     * 1,   6,   11,   14
+     * 2,   7,   12,   17
+     * 3,   8,   13,   18
+     * 4,   9,   14,   19
+     *
+     * @param matrix        Input matrix
+     * @param matrixRows    No of rows in Matrix
+     * @param matrixColumns No of columns in Matrix
+     */
+    public void transpose(int[][] matrix, int matrixRows, int matrixColumns) {
+        for (int i = 0; i < matrixRows; i++) {
+            for (int j = i; j < matrixColumns; j++) {
+                int temp = matrix[j][i];
+                matrix[j][i] = matrix[i][j];
+                matrix[i][j] = temp;
+            }
+        }
+        // printMatrix(matrix, matrixRows, matrixColumns);
+    }
+
+    /**
+     * For input
+     * 1,   6,   11,   14
+     * 2,   7,   12,   17
+     * 3,   8,   13,   18
+     * 4,   9,   14,   19
+     * output will be
+     * 4,   9,   14,   19
+     * 3,   8,   13,   18
+     * 2,   7,   12,   17
+     * 1,   6,   11,   14
+     *
+     * @param matrix
+     * @param matrixRows
+     * @param matrixColumns
+     */
+    public void reverseColumns(int[][] matrix, int matrixRows, int matrixColumns) {
+        for (int i = 0; i < matrixRows / 2; i++) {
+            int[] temp = matrix[matrixRows - i - 1];
+            matrix[matrixRows - i - 1] = matrix[i];
+            matrix[i] = temp;
+        }
+        printMatrix(matrix, matrixRows, matrixColumns);
+    }
+
     public int kthSmallest(int[][] matrix, int k) {
         int m = matrix.length;
 
